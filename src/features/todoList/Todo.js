@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {create, edit, remove, toggleComplete} from './todoSlice'
 import { BsCheckLg } from "react-icons/bs";
+import styled from 'styled-components';
 
 const Todo = () => {
     const [inputText, setInputText] = useState("");
@@ -43,7 +44,7 @@ const handleUpdate = event => {
     return(
         <div>
             <form onSubmit={handleSubmit}>
-                <input 
+                <Input 
                 onChange={event => setInputText(event.target.value)}
                 value={inputText}
                 />
@@ -66,7 +67,7 @@ const handleUpdate = event => {
                     <>
 
                     {todo.description}
-{/* id todo ist Completed, show Done, if not show nothing */}
+{/* if todo ist Completed, show Done, if not show nothing */}
                     {todo.isComplete ? <> <BsCheckLg /> </>: "" } 
                     <button onClick={handleDelete(todo.id)}> Delete</button>
                     <button onClick={handleToggle(todo.id)}> Mark as Done!</button>
@@ -79,5 +80,10 @@ const handleUpdate = event => {
         </div>
     )
 };
+
+const Input = styled.input`
+display: flex;
+flex-direction: column;
+`
 
 export default Todo;
